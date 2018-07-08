@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: pyfw
+Version: 0.0.1
+Summary: nilesflow: Personal Python Framework
+Home-page: https://github.com/nilesflow/pyfw
+Author: nilesflow
+Author-email: nilesflow@gmail.com
+License: MIT
+Description: # pyfw
+        Personal Python Framework
+        
+Platform: UNKNOWN
