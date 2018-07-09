@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name = "pyfw",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "nilesflow: Personal Python Framework",
     url = "https://github.com/nilesflow/pyfw",
     author = "nilesflow",
