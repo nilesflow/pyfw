@@ -72,5 +72,13 @@ class PahoAwsIot:
 		# Continue monitoring the incoming messages for subscribed topic
 		return self.mqttc.loop_forever(timeout)
 
+	def publish(self, topic, **kargs):
+		self.logger.info(kargs)
+		payload = json.dumps(kargs)
+
+		self.logger.info(topic)
+		self.logger.info(payload)
+		self.mqttc.publish(topic, payload)
+
 	def disconnect(self):
 		return self.mqttc.disconnect()
