@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # standard modules
-import urllib.request
+try:
+	import urllib.request
+except ImportError:
+	pass
 
 # user modules
 from pyfw.error.error import Error
@@ -12,6 +15,10 @@ class Http:
 	def __init__(self, **kargs):
 		logging = kargs['logging']
 		self.logger = logging.getLogger(__name__)
+
+		# モジュール確認
+		if not 'urllib.request' in globals():
+			self.logger.error("can't find urllib.request.")
 
 	def post(self, **kargs):
 		try:
