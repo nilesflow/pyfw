@@ -24,9 +24,15 @@ class Cognitive:
 		self.key = kargs['key']
 
 		# トークン管理
-		path = kargs['path_temp'] + '/token_cognitive'
+		self.path_token = kargs['path_temp'] + '/token_cognitive'
+
+	def _refleshToken(self):
+		"""
+		クラス内のアクセストークンを更新
+		"""
 
 		# ファイル存在チェック
+		path = self.path_token;
 		token = None
 		if not os.path.exists(path):
 			# 無ければ新規作成
@@ -46,10 +52,12 @@ class Cognitive:
 				# 期限内なら、ファイルから読みこむ
 				token = file.read(path) # 失敗時、None
 
+		# 再作成
 		if token is None:
 			token = self.issueToken()
 			file.write(path, token)
 
+		# クラス内に保持
 		self.token = token
 
 	def issueToken(self):
@@ -84,6 +92,10 @@ class Cognitive:
 		Speech to Text API
 		"""
 
+		# アクセストークンのリフレッシュ
+		self._refleshToken()
+
+		# APIでwav -> text変換
 		res = requests.post(
 			url = "https://speech.platform.bing.com/speech/recognition/interactive/cognitiveservices/v1",
 			params = params,
